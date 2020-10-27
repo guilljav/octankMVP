@@ -1,0 +1,64 @@
+service: user-management-api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  credentials:
+    accessKeyId: AKIAJCETEKEQ3S2GD6NA
+    secretAccessKey: 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
+  environment:
+    poolId: "us-east-1_8KNcYus2v"
+    clientId: "5n7hldv84vt5hcjfia0fvkgm2o"
+    region: "us-east-1"
+    accessKeyId: AKIAJCETEKEQ3S2GD6NA
+    secretAccessKey: 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
+
+plugins:
+  - serverless-plugin-browserify
+
+package:
+  individually: true
+  include:
+    - yarn.lock
+
+functions:
+  SignUp:
+    handler: SignUp/handler.CognitoAuthMethod
+    events:
+      - http:
+          path: SignUp
+          method: post
+          cors: true
+  ForgetPassword:
+    handler: forgotPassword/forgotPassword.ForgetPasswordMethod
+    events:
+      - http:
+          path: ForgetPassword
+          method: post
+          cors: true
+      - http:
+          path: ResetPassword
+          method: put
+          cors: true
+  SignIn:
+    handler: signIn/handler.SignInMethod
+    events:
+      - http:
+          path: SignIn
+          method: post
+          cors: true
+  # UserPoolData:
+  #   handler: userPoolData/handler.GetUserPoolDataMethod
+  #   events:
+  #     - http:
+  #         path: UserPoolData
+  #         method: get
+  #         cors: true
+  # ValidateUser:
+  #   handler: validateUser/handler.ValidateUserMethod
+  #   events:
+  #     - http:
+  #         path: ValidateUser
+  #         method: post
+  #         cors: true
