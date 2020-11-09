@@ -3,13 +3,7 @@
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 global.fetch = require('node-fetch');
 var mysql = require('mysql');
- var connection = mysql.createConnection({
-   host     : 'om1ju5yxcgpbl1k.ceugutguvx3t.us-east-1.rds.amazonaws.com',
-     port      :  '3306',
-   user     : 'admin',
-  password : 'Qwert123456',
-   database : 'MyDatabase'
- });
+
 const poolData = {
     UserPoolId: process.env.poolId, // Your user pool id here
     ClientId: process.env.clientId // Your client id here
@@ -72,6 +66,14 @@ function SignIn(event, callback) {
 
 function getuserData(email,callback){
 try{
+    var connection = mysql.createConnection({
+   host     : 'om1ju5yxcgpbl1k.ceugutguvx3t.us-east-1.rds.amazonaws.com',
+     port      :  '3306',
+   user     : 'admin',
+  password : 'Qwert123456',
+   database : 'MyDatabase'
+ });
+
     connection.connect();
     connection.query('SELECT * FROM `Clients` WHERE `Email` = ?' , [email] , function (error, results, fields) {
     if (error){

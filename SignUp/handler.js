@@ -5,13 +5,7 @@ const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({a
 const cognitoClientId = process.env.clientId
 
  var mysql = require('mysql');
- var connection = mysql.createConnection({
-   host     : 'om1ju5yxcgpbl1k.ceugutguvx3t.us-east-1.rds.amazonaws.com',
-     port      :  '3306',
-   user     : 'admin',
-  password : 'Qwert123456',
-   database : 'MyDatabase'
- });
+ 
 exports.CognitoAuthMethod = (event, context, callback) => {
     const userParams = JSON.parse(event.body);
     userParams.ClientId = cognitoClientId
@@ -53,6 +47,13 @@ function RegisterUser(userParams, callback) {
 }
 
 async function SetUser(name, email, address, type, data,phone, callback){
+    var connection = mysql.createConnection({
+   host     : 'om1ju5yxcgpbl1k.ceugutguvx3t.us-east-1.rds.amazonaws.com',
+     port      :  '3306',
+   user     : 'admin',
+  password : 'Qwert123456',
+   database : 'MyDatabase'
+ });
     connection.connect();
     connection.query('INSERT INTO Clients (Name, Email, Address, Type,Data, Phone) Values (? , ? ,? ,? ,?,?)' , [name, email,address,type,data,phone] , function (error, results, fields) {
     if (error){

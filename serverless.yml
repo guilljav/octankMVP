@@ -5,14 +5,14 @@ provider:
   runtime: nodejs12.x
   region: us-east-1
   credentials:
-    accessKeyId: xxxxxxxxxxxxxxx
-    secretAccessKey: xxxxxxxxxxxxxxxx
+    accessKeyId: AKIAXN4XPPE3RN35UL7C
+    secretAccessKey: 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
   environment:
-    poolId: "xxxxxxxxxxx"
-    clientId: "xxxxxxxxxxxxxxxxxx"
+    poolId: "us-east-1_8KNcYus2v"
+    clientId: "5n7hldv84vt5hcjfia0fvkgm2o"
     region: "us-east-1"
-    accessKeyId: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    secretAccessKey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    accessKeyId: AKIAXN4XPPE3RN35UL7C
+    secretAccessKey: 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
 
 plugins:
   - serverless-plugin-browserify
